@@ -106,8 +106,9 @@ def main():
 
     # https://github.com/regebro/tzlocal/issues/74
     # local_tz = tzlocal.get_localzone()
-    from datetime import timezone, timedelta
-    local_tz = timezone(timedelta(seconds=10800), 'EEST')
+    # from datetime import timezone, timedelta
+    # local_tz = timezone(timedelta(seconds=10800), 'EEST')
+    local_tz = datetime.now().astimezone().tzinfo
 
     with open(get_local('sun_times'), 'rb') as file:
         sunrise, sunset = pkl.load(file)
