@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 import logging
 from datetime import timedelta
+from datetime import date
 from time import sleep
 
 import pytz
 import tzlocal
 from astral import LocationInfo
+from astral.sun import sun
 
 from automathemely.autoth_tools.utils import get_local, verify_desktop_session
 
@@ -72,9 +74,10 @@ def main(us_se):
     except ValueError as e:
         logger.error(str(e))
         return
-
-    sunrise = location.sun()['sunrise'].replace(second=0) + timedelta(minutes=us_se['offset']['sunrise'])
-    sunset = location.sun()['sunset'].replace(second=0) + timedelta(minutes=us_se['offset']['sunset'])
+	
+    s = sun(location.observer, date=date.today(), tzinfo=pytz.timezone(location.timezone))
+    sunrise = s['sunrise'].replace(second=0) + timedelta(minutes=us_se['offset']['sunrise'])
+    sunset = s['sunset'].replace(second=0) + timedelta(minutes=us_se['offset']['sunset'])
 
     #   Convert to UTC for storage
     return sunrise.astimezone(pytz.utc), sunset.astimezone(pytz.utc)
