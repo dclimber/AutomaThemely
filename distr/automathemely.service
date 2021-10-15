@@ -1,0 +1,11 @@
+[Unit]
+Description=Update automathemely sun times daily
+After=network-online.target
+Wants=network-online.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/automathemely -u
