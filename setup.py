@@ -27,7 +27,7 @@ setup(
     url='https://github.com/C2N14/AutomaThemely',
     license='GPLv3',
     packages=['automathemely', 'automathemely.bin', 'automathemely.autoth_tools'],
-    python_requires='>=3.5',
+    python_requires='>=3.8',
     install_requires=['requests', 'astral', 'pytz', 'tzlocal', 'schedule'],
     include_package_data=True,
     package_data={
