@@ -21,7 +21,29 @@ Additionally, wether your DE is listed above or not, you can also create and add
 
 Thus you can add support it even if not listed above (although if you'd like to see it integrated in a later version you can always make a suggestion by [oppening an issue](https://github.com/C2N14/AutomaThemely/issues)).
 
-## Getting Started
+## Getting started for Ubuntu 20.04 and above distros
+
+Inspired by [comment](https://github.com/C2N14/AutomaThemely/issues/42#issuecomment-633081574) from [jjemil749](https://github.com/jjemil749) on original repository's [Issue #42](https://github.com/C2N14/AutomaThemely/issues/42).
+
+The original package works in Ubuntu 16.04 and 18.04.
+
+For other distros (I'm on Linux Mint 20.2 Cinnamon), there's a try packaging it yourself link:
+https://github.com/C2N14/AutomaThemely/wiki/Packaging-it-yourself.
+
+1. Clone source code with `git clone`;
+2. Run code with `sudo ./.package.sh`;
+3. Install dependencies manually: `pip3 install astral schedule tzlocal wheel`;
+4. Install the resulting **no_deps** package with: `sudo dpkg -i python3.8-no_deps-automathemely_1.3.0.dev1_all.deb`;
+5. Fix the autostart problem:
+   - `automathemely.desktop` automatically gets installed to `/usr/local/share/applications` (seems wrong, it's the only .desktop there);
+   - Copy `automathemely.desktop` to `/usr/share/applications` (where it seems it should have been).
+6. Copy `automathemely.desktop` to the user's autostart folder `$HOME/.config/autostart/automathemely.desktop`;
+
+It seems to run fine. AutomaThemely autostarts and a notification pop-up informs that it applied the dark or light theme. At night, it applied the dark theme. During the day, it applied the light theme. Seems to be working fine.
+
+---
+
+## Original Getting Started
 
 ### Prerequisites
 

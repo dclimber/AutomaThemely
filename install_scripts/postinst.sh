@@ -11,7 +11,7 @@ if_not_dir_create () {
 
 local_install=false
 ## CHECK FOR ROOT PRIVILEGES
-if ((${EUID:-0} || "$(id -u)")); then
+if [[ $EUID -eq 0 ]]; then
 
     if [[ -z "$SUDO_USER" ]]; then
         echo "SUDO_USER variable not found, trying to find user manually..."
@@ -48,13 +48,13 @@ fi
 ## MOVE FILES TO LOCATIONS
 # Autostart on user log in
 if_not_dir_create "$autostart_path"
-cp "$packdir/installation_files/autostart.desktop" "$autostart_path/automathemely.desktop"
+cp "$packdir/lib/installation_files/autostart.desktop" "$autostart_path/automathemely.desktop"
 sed -i "s|<PACKDIR>|$packdir|g" "$autostart_path/automathemely.desktop"
 
 # Timer & service units
 if_not_dir_create "$systemd_user_path"
-cp "$packdir/installation_files/sun-times.timer" "$systemd_user_path/automathemely.timer"
-cp "$packdir/installation_files/sun-times.service" "$systemd_user_path/automathemely.service"
+cp "$packdir/lib/installation_files/sun-times.timer" "$systemd_user_path/automathemely.timer"
+cp "$packdir/lib/installation_files/sun-times.service" "$systemd_user_path/automathemely.service"
 sed -i "s|<PACKDIR>|$packdir|g" "$systemd_user_path/automathemely.service"
 
 
