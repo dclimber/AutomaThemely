@@ -5,7 +5,7 @@ pkill -f "autothscheduler.py"
 
 local_install=false
 ## CHECK FOR ROOT PRIVILEGES
-if ((${EUID:-0} || "$(id -u)")); then
+if [[ $EUID -eq 0 ]]; then
 
     if [[ -z "$SUDO_USER" ]]; then
         echo "SUDO_USER variable not found, trying to find user manually..."
