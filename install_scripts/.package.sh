@@ -6,7 +6,7 @@ if_not_dir_create () {
   fi
 }
 
-declare -a outputs=("deb" "rpm" "sh")
+declare -a outputs=("deb" "sh")
 declare -a pypacks=("astral" "requests" "tz" "tzlocal" "schedule")
 declare -a otherdeps=("python3-pip")
 declare -a python_versions=("3.8")
